@@ -1,6 +1,82 @@
+
+html {
+  --color-accent: oklch(65% 50% 220); 
+  accent-color: var(--color-accent); 
+}
+
+
+
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-  }
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  max-width: 100ch;
+  padding: 1rem;
+  line-height: 1.6;
+}
+
+nav {
+  display: flex; 
+  margin-bottom: 1em;
+  border-bottom: 1px solid oklch(80% 3% 200); 
+}
+
+nav a {
+  flex: 1; 
+  text-align: center; 
+  text-decoration: none;
+  color: inherit; 
+  padding: 0.5em; 
+}
+
+nav a.current {
+  border-bottom: 0.4em solid oklch(80% 3% 200); 
+  padding-bottom: 0.1em; 
+}
+
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: 0.1em; 
+  background-color: oklch(from var(--color-accent) 95% 5% h); 
+}
+
+
+form input,
+form textarea,
+form button {
+    font: inherit; /* Use the same font as the page */
+}
+
+form {
+  max-width: 500px; /* Optional: Limit the form width for better readability */
+  margin: 0 auto; /* Center the form on the page */
+}
+
+form label {
+  display: block; /* Make labels behave like block elements */
+  margin-block: 0.5em; /* Add spacing above and below labels */
+  font-weight: bold; /* Optional: Highlight labels */
+}
+
+form input,
+form textarea {
+  display: block; /* Make inputs behave like block elements */
+  width: 100%; /* Occupy the full width of the container */
+  box-sizing: border-box; /* Include padding and borders in the width calculation */
+  padding: 0.5em; /* Add padding for a more comfortable input field */
+  margin-bottom: 1em; /* Add spacing below each field */
+  border: 1px solid #ccc; /* Subtle border for inputs */
+  border-radius: 4px; /* Optional: Rounded corners */
+}
+
+form button {
+  padding: 0.7em 1.5em; /* Add padding to buttons */
+  background-color: var(--color-accent, #007BFF); /* Use your accent color */
+  color: #fff; /* White text for contrast */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Optional: Rounded corners */
+  cursor: pointer; /* Change cursor to pointer */
+  font-size: 1em; /* Optional: Increase font size for readability */
+}
+
+form button:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
