@@ -18,10 +18,10 @@
 
 // Step 1: Array of pages with URLs and titles
 let pages = [
-    { url: 'index.html', title: 'Home' },
-    { url: 'projects/index.html', title: 'Projects' },
-    { url: 'contact/index.html', title: 'Contact' },
-    { url: 'cv/index.html', title: 'CV' },
+    { url: '../index.html', title: 'Home' },
+    { url: '../projects/index.html', title: 'Projects' },
+    { url: '../contact/index.html', title: 'Contact' },
+    { url: '../cv/index.html', title: 'CV' },
     { url: 'https://github.com/banffjiang', title: 'GitHub' }
   ];
   
