@@ -25,45 +25,41 @@ let pages = [
     { url: 'https://github.com/banffjiang', title: 'GitHub' }
   ];
   
-
+  // Check if we're on the home page
   const ARE_WE_HOME = document.documentElement.classList.contains('home');
   
-
+  // Create the <nav> element
   let nav = document.createElement('nav');
   document.body.prepend(nav);
   
-
   let navLinks = [];
   
-
   for (let p of pages) {
     let url = p.url;
     let title = p.title;
   
-
+    // Prepend '../' for non-home pages (relative URLs)
     url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
   
-
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
   
-
-    navLinks.push(a);
-  
-
-    if (!a.host === location.host) {
+    // Check if it's an external link
+    if (a.host !== location.host) {
       a.target = '_blank';
     }
   
-
+    // Push the link to the navLinks array
+    navLinks.push(a);
+  
+    // Add the link to the <nav> element
     nav.append(a);
   }
   
-
+  // Highlight the current page link
   let currentLink = navLinks.find(
     (a) => a.host === location.host && a.pathname === location.pathname
   );
-  
   currentLink?.classList.add('current');
   
