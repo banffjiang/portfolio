@@ -1,22 +1,4 @@
-// console.log('IT’S ALIVE!');
 
-// function $$(selector, context = document) {
-//   return Array.from(context.querySelectorAll(selector));
-// }
-
-
-// const $$ = (selector) => Array.from(document.querySelectorAll(selector));
-
-
-// const navLinks = $$("nav a");
-
-// const currentLink = navLinks.find(
-//     (a) => a.host === location.host && a.pathname === location.pathname
-//   );
-
-// currentLink?.classList.add('current');
-
-// Step 1: Array of pages with URLs and titles
 let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/', title: 'Projects' },
@@ -32,8 +14,7 @@ let pages = [
   let nav = document.createElement('nav');
   document.body.prepend(nav);
   
-  let navLinks = [];
-  
+ 
   for (let p of pages) {
     let url = p.url;
     let title = p.title;
@@ -44,16 +25,6 @@ let pages = [
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
-  
-    // Check if it's an external link
-    if (a.host !== location.host) {
-      a.target = '_blank';
-    }
-  
-    // Push the link to the navLinks array
-    navLinks.push(a);
-  
-    // Add the link to the <nav> element
     nav.append(a);
   }
   
