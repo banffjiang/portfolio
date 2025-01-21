@@ -28,9 +28,7 @@ let pages = [
     nav.append(a);
   }
   
-  // Highlight the current page link
-  let currentLink = navLinks.find(
-    (a) => a.host === location.host && a.pathname === location.pathname
-  );
-  currentLink?.classList.add('current');
+  if (a.host === location.host && a.pathname === location.pathname) {
+    a.classList.add('current');
+  }
   
