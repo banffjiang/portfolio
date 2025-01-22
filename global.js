@@ -30,3 +30,37 @@ for (let p of pages) {
 
     nav.append(a);
 }
+
+
+// Insert the select element dynamically
+document.body.insertAdjacentHTML(
+    'afterbegin',
+    `
+      <form>
+        <label class="color-scheme">
+          Theme:
+          <select id="color-scheme-select">
+            <option value="auto" selected>Automatic</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+      </form>
+    `
+  );
+  
+  const select = document.querySelector('#color-scheme-select');
+  
+  select.addEventListener('input', function (event) {
+    const selectedScheme = event.target.value;
+    console.log('Color scheme changed to', selectedScheme);
+  
+    const root = document.documentElement;
+  
+    if (selectedScheme === 'auto') {
+      root.style.removeProperty('color-scheme'); 
+    } else {
+      root.style.setProperty('color-scheme', selectedScheme);
+    }
+  });
+  
