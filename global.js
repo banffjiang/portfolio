@@ -16,13 +16,14 @@ for (let p of pages) {
     let title = p.title;
 
     if (!ARE_WE_HOME && !url.startsWith('http')) {
-        url = 'portfolio/' + url;
+        url = '../' + url;
     }
 
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
 
+    // Highlight the current page link
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
     }
