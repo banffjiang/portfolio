@@ -23,7 +23,6 @@ for (let p of pages) {
     a.href = url;
     a.textContent = title;
 
-    // Highlight the current page link
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
     }
@@ -32,7 +31,6 @@ for (let p of pages) {
 }
 
 
-// Insert the select element dynamically
 document.body.insertAdjacentHTML(
     'afterbegin',
     `
