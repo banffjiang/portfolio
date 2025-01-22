@@ -62,3 +62,8 @@ document.body.insertAdjacentHTML(
     }
   });
   
+  if (ARE_WE_HOME) {
+    let script = document.createElement('script');
+    script.src = 'global.js'; // This is the script you want to load only on the homepage
+    document.body.appendChild(script);
+}
