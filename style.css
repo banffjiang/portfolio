@@ -204,5 +204,23 @@ a:hover {
   font-size: 1em;
 }
 
+:root {
+  color-scheme: light dark; 
+}
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body[data-theme='light'] {
+  background-color: white;
+  color: black;
+}
+
+body[data-theme='dark'] {
+  background-color: black;
+  color: white;
+}
+
 
 
