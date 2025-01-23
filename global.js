@@ -54,3 +54,13 @@ select.addEventListener('input', function (event) {
 
   document.documentElement.style.setProperty('color-scheme', event.target.value);
 });
+
+const savedTheme = localStorage.getItem('color-scheme') || 'auto';
+document.documentElement.style.setProperty('color-scheme', savedTheme);
+select.value = savedTheme;
+
+
+select.addEventListener('input', function (event) {
+  const theme = event.target.value;
+  localStorage.setItem('color-scheme', theme); 
+});
