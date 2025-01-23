@@ -2,6 +2,7 @@
 html {
   --color-accent: oklch(65% 50% 220); 
   accent-color: var(--color-accent); 
+  color-scheme: light dark
 }
 
 body {
