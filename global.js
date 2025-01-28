@@ -86,7 +86,12 @@ export async function fetchJSON(url) {
 }
 
 
-export function renderProjects(projects, containerElement) {
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!(containerElement instanceof HTMLElement)) {
+      console.error('Invalid container element:', containerElement);
+      return;
+  }
+
   containerElement.innerHTML = '';
 
   for (let i = 0; i < projects.length; i++) {
@@ -95,8 +100,8 @@ export function renderProjects(projects, containerElement) {
       const article = document.createElement('article');
 
       article.innerHTML = `
-          <h3>${project.title}</h3>
-          <img src="${project.image}" alt="${project.title}">
+          <${headingLevel}>${project.title}</${headingLevel}>
+          <img src="${project.image}" alt="${project.title || 'Untitled Project'}">
           <p>${project.description}</p>
       `;
 
