@@ -7,6 +7,7 @@ const projectsTitle = document.querySelector('.projects-title');
 
 if (projectsTitle) {
 
-    projectsTitle.textContent = `Projects (${projects.length})`;
+    projectsTitle.textContent = `${projects.length} Projects`;
 
 }
+
