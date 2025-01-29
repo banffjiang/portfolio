@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class = "home">
+<html lang="en" class="home">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banff: Personal site and Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="global.js" type="module"></script>
-    <script src="index.js" type="module" defer></script>
-
+    <link rel = "stylesheet" href =  "style.css">
+    <script src = "global.js" type = "module"></script>
+    <script src = "index.js" type = "module" defer></script>
 </head>
 <body>
     <header></header>
@@ -16,13 +15,26 @@
     <main>
         <h1>Banff Jiang</h1> 
         <p>Welcome to my page! I am currently a third year at the University of California, San Diego, studying Data Science.</p>   
-        <img src="images/photo.jpeg" alt="Sunset during trip to Hawaii this summer" />
-        <div class="projects"></div>
-        
+        <img src = "images/photo.jpeg" alt = "Sunset during trip to Hawaii this summer" />
+
+        <section>
+            <h2>GitHub Profile Stats</h2>
+            <div id = "profile-stats" class = "dropdown">
+                <dl class = "profile-info">
+                    <dt>Public Repos:</dt><dd></dd>
+                    <dt>Public Gists:</dt><dd></dd>
+                    <dt>Followers:</dt><dd></dd>
+                    <dt>Following:</dt><dd></dd>
+                </dl>
+            </div>
+        </section>
+
+        <section>
             <h2>Latest Projects</h2>
-            <div class="projects">
+            <div class = "projects">
                 <!-- Dynamically added content will appear here -->
             </div>
+        </section>
     </main>
 </body>
 </html>

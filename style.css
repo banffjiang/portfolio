@@ -204,3 +204,38 @@ a:hover {
   font-size: 1rem;      
   padding: 0.25rem;     
 }
+
+/* Style the dropdown container */
+#profile-stats {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 equal columns */
+  grid-gap: 10px;
+}
+
+.profile-info dt {
+  font-weight: bold;
+  grid-row: 1; /* Place all <dt> in the first row */
+}
+
+.profile-info dd {
+  grid-row: 2; /* Place all <dd> in the second row */
+  margin: 0;
+}
+
+.profile-info dt, .profile-info dd {
+  padding: 5px;
+  margin: 0;
+}
