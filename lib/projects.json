@@ -1,21 +1,25 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
+        "title": "TaskPro",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem repellendus ratione suscipit nihil debitis, vitae nostrum in blanditiis perspiciatis. Perferendis, dolores non enim maiores ipsum reiciendis quos debitis exercitationem?"
     },
     {
-        "title": "Deserunt amet inventore facere?",
+        "title": "Stock Market Model",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Vero saepe modi autem consequatur rerum ratione, mollitia quia et dolorum excepturi quibusdam obcaecati. A voluptate enim ab similique beatae possimus nulla, cumque nam sint. Ducimus error facere modi dolores?"
     },
     {
-        "title": "Earum, aliquid corporis? Veritatis.",
+        "title": "Sentiment Analysis",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Tempore soluta ipsam similique debitis laborum necessitatibus! Libero, voluptatum? Hic consequuntur quibusdam odit. Ratione odio adipisci molestiae dolorem. Cupiditate veritatis, molestias deleniti explicabo eius aut aspernatur sapiente earum praesentium maxime."
     },
     {
-        "title": "Quae debitis ex voluptatem!",
+        "title": "Personal Website",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Mollitia eos accusantium maiores reiciendis ad aspernatur voluptate dolore iure perspiciatis veritatis quia, pariatur unde vitae quae laudantium asperiores fuga? Asperiores sapiente possimus cum! Nobis eum quisquam natus inventore soluta?"
     },
