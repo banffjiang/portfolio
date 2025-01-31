@@ -91,7 +91,7 @@ img {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); 
+  grid-template-columns: repeat(auto-fit, minmax(12em, 1fr)); /* Reduced from 15em to 12em */
   gap: 1em; 
   padding: 1rem;
 }
@@ -102,6 +102,8 @@ img {
   grid-row: span 3; 
   gap: 1em;  
   align-content: start;  
+  margin: 0;
+  padding: 0;
 }
 
 .projects img {
