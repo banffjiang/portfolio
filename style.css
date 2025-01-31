@@ -90,37 +90,38 @@ img {
 }
 
 .projects {
-  display: grid; 
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); 
-  gap: 1em; 
-  padding: 1rem; 
+  grid-auto-rows: auto; /* Ensures rows exist for subgrid */
+  gap: 1em;
+  padding: 1rem;
+  box-sizing: border-box; /* Ensures borders/margins don't break the layout */
 }
 
 .projects article {
-  display: grid;  
-  grid-template-rows: subgrid;  
-  grid-row: span 3;  
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  align-content: start; /* Ensures proper alignment */
+  box-sizing: border-box;
 }
 
-
-
 .projects img {
-  width: 100%; 
-  height: auto; 
-  border-radius: 4px; 
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 .projects article h2 {
-  margin: 0; 
-  font-size: 2em;  
-  line-height: 1.1; 
+  margin: 0;
+  font-size: 2em;
+  line-height: 1.1;
 }
 
 h1 {
-  font-size: 4em;  
-  line-height: 1.1; 
+  font-size: 4em;
+  line-height: 1.1;
 }
-
 
 h2, h3, h4, h5, h6 {
   line-height: 1.1;
