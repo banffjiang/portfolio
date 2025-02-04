@@ -30,7 +30,7 @@ let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
 let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-let svg = d3.select('svg');
+let svg = d3.select('#projects-plot').attr('width', 400).attr('height', 400);
 
 arcData.forEach((d, idx) => {
     svg.append('path')
