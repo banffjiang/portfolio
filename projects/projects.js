@@ -38,7 +38,7 @@ arcData.forEach((d, idx) => {
         .attr('fill', colors(idx)); 
 });
 
-let legend = d3.select('.legend'); 
+let legend = d3.select('.legend');
 
 data.forEach((d, idx) => {
     legend.append('li') 
