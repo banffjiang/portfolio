@@ -127,6 +127,17 @@ h2, h3, h4, h5, h6 {
   line-height: 1.1;
 }
 
+.project-info {
+  font-family: Baskerville, serif;
+}
+
+.project-year {
+  font-variant-numeric: oldstyle-nums;
+  font-style: italic;
+  color: #555;
+}
+
+
 
 /* CV */
 
