@@ -6,20 +6,14 @@ renderProjects(projects, projectsContainer, 'h2');
 const projectsTitle = document.querySelector('.projects-title');
 
 if (projectsTitle) {
-
     projectsTitle.textContent = `${projects.length} Projects`;
-
 }
 
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
-
-d3.select('svg').append('path').attr('d', arc).attr('fill', 'red');
-
 let data = [1, 2];
 
 let total = 0;
-
 for (let d of data) {
   total += d;
 }
@@ -33,13 +27,15 @@ for (let d of data) {
   angle = endAngle;
 }
 
+let colors = ['gold', 'purple'];
+
+let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+
 let arcs = arcData.map((d) => arcGenerator(d));
 
 arcs.forEach((arc, idx) => {
     d3.select('svg')
       .append('path')
       .attr('d', arc)
-      .attr(colors[idx]) 
-})
-
-let colors = ['gold', 'purple'];
+      .attr('fill', colors[idx]);
+});
