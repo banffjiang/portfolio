@@ -144,6 +144,31 @@ h2, h3, h4, h5, h6 {
   overflow: visible;
 }
 
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr)); /* Grid layout for legend */
+  gap: 1em; /* Space between items */
+  padding: 1em; /* Space inside the legend */
+  margin-top: 2em; /* Space around the legend */
+  border: 2px solid #ddd; /* Border around the legend */
+  border-radius: 8px; /* Rounded corners for the legend */
+}
+
+.legend li {
+  display: flex; /* Flexbox for each item */
+  align-items: center; /* Center items vertically */
+  gap: 0.5em; /* Space between the swatch and text */
+}
+
+.swatch {
+  display: inline-block;
+  width: 1.5em; /* Set width */
+  height: 1.5em; /* Set height */
+  aspect-ratio: 1 / 1; /* Ensures it’s always a square */
+  background-color: var(--color); /* Use the dynamic color */
+  border-radius: 50%; /* Make it a circle */
+}
+
 
 
 /* CV */
