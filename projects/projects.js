@@ -1,4 +1,18 @@
 import { fetchJSON, renderProjects } from "../global.js";
+
+let query = '';
+let searchInput = document.querySelector('.searchBar');
+searchInput.addEventListener('change', (event) => {
+    // update query value
+    query = event.target.value;
+    let filteredProjects = projects.filter((project) => {
+        let values = Object.values(project).join('\n').toLowerCase();
+        return values.includes(query.toLowerCase());
+      });
+      
+      renderProjects(filteredProjects, projectsContainer, 'h2');
+    });
+    
 const projects = await fetchJSON('../lib/projects.json');
 const projectsContainer = document.querySelector('.projects');
 renderProjects(projects, projectsContainer, 'h2');
