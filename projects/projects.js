@@ -1,7 +1,7 @@
 import { fetchJSON, renderProjects } from "../global.js";
 let query = '';
 let searchInput = document.querySelector('.searchBar');
-searchInput.addEventListener('change', (event) => {
+searchInput.addEventListener('input', (event) => {
     // update query value
     query = event.target.value;
     let filteredProjects = projects.filter((project) => {
