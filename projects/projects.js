@@ -1,60 +1,60 @@
 import { fetchJSON, renderProjects } from "../global.js";
+let query = '';
+let searchInput = document.querySelector('.searchBar');
+searchInput.addEventListener('change', (event) => {
+    // update query value
+    query = event.target.value;
+    let filteredProjects = projects.filter((project) => {
+        let values = Object.values(project).join('\n').toLowerCase();
+        return values.includes(query.toLowerCase());
+      });
+      
+      renderProjects(filteredProjects, projectsContainer, 'h2');
+    });
+    
+const projects = await fetchJSON('../lib/projects.json');
+const projectsContainer = document.querySelector('.projects');
+renderProjects(projects, projectsContainer, 'h2');
+
+const projectsTitle = document.querySelector('.projects-title');
+
+if (projectsTitle) {
+    projectsTitle.textContent = `${projects.length} Projects`;
+}
+
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
-const projectsContainer = document.querySelector('.projects');
-const projectsTitle = document.querySelector('.projects-title');
-const searchInput = document.querySelector('.searchBar');
-let projects = [];
+let rolledData = d3.rollups(
+    projects,
+    (v) => v.length,
+    (d) => d.year,
+  );
 
-fetchJSON('../lib/projects.json').then((data) => {
-    projects = data; 
-    renderProjects(projects, projectsContainer, 'h2');
+let data = rolledData.map(([year, count]) => {
+    return { value: count, label: year };
+  });
 
-    if (projectsTitle) {
-        projectsTitle.textContent = `${projects.length} Projects`;
-    }
 
-    searchInput.addEventListener('change', (event) => {
-        const query = event.target.value.toLowerCase();
-        let filteredProjects = projects.filter((project) => {
-            let values = Object.values(project).join('\n').toLowerCase();
-            return values.includes(query);
-        });
+let sliceGenerator = d3.pie().value((d) => d.value);
 
-        renderProjects(filteredProjects, projectsContainer, 'h2');
-    });
+let arcData = sliceGenerator(data);
 
-    let rolledData = d3.rollups(
-        projects,
-        (v) => v.length,
-        (d) => d.year,
-    );
+let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-    let data = rolledData.map(([year, count]) => {
-        return { value: count, label: year };
-    });
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-    let sliceGenerator = d3.pie().value((d) => d.value);
+let svg = d3.select('#projects-plot').attr('width', 400).attr('height', 400);
 
-    let arcData = sliceGenerator(data);
+arcData.forEach((d, idx) => {
+    svg.append('path')
+        .attr('d', arcGenerator(d))
+        .attr('fill', colors(idx)); 
+});
 
-    let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+let legend = d3.select('.legend');
 
-    let colors = d3.scaleOrdinal(d3.schemeTableau10);
-
-    let svg = d3.select('#projects-plot').attr('width', 400).attr('height', 400);
-
-    arcData.forEach((d, idx) => {
-        svg.append('path')
-            .attr('d', arcGenerator(d))
-            .attr('fill', colors(idx));
-    });
-
-    let legend = d3.select('.legend');
-
-    data.forEach((d, idx) => {
-        legend.append('li')
-              .attr('style', `--color:${colors(idx)}`)
-              .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
-    });
+data.forEach((d, idx) => {
+    legend.append('li') 
+          .attr('style', `--color:${colors(idx)}`) 
+          .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); 
 });
