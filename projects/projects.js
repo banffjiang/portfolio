@@ -60,3 +60,58 @@ function renderPieChart(projectsGiven) {
         .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
   });
 }
+
+let selectedIndex = -1;
+
+let svg = d3.select('#projects-plot'); 
+
+svg.selectAll('path').remove();
+
+arcData.forEach((arc, i) => {
+  svg
+    .append('path')
+    .attr('d', arcGenerator(arc))
+    .attr('fill', colors(i))
+    .on('click', () => {
+      selectedIndex = selectedIndex === i ? -1 : i; 
+
+      svg
+        .selectAll('path')
+        .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+      legend
+        .selectAll('li')
+        .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+      if (selectedIndex === -1) {
+        renderProjects(projects, projectsContainer, 'h2');
+      } else {
+        let selectedYear = data[selectedIndex].label; 
+        let filteredProjects = projects.filter(project => project.year === selectedYear);
+        renderProjects(filteredProjects, projectsContainer, 'h2');
+      }
+    });
+});
+
+let legend = d3.select('.legend');
+legend.selectAll('li').each(function(_, idx) {
+  d3.select(this).on('click', () => {
+    selectedIndex = selectedIndex === idx ? -1 : idx; 
+
+    svg
+      .selectAll('path')
+      .attr('class', (_, i) => (i === selectedIndex ? 'selected' : ''));
+
+    legend
+      .selectAll('li')
+      .attr('class', (_, i) => (i === selectedIndex ? 'selected' : ''));
+
+    if (selectedIndex === -1) {
+      renderProjects(projects, projectsContainer, 'h2');
+    } else {
+      let selectedYear = data[selectedIndex].label;
+      let filteredProjects = projects.filter(project => project.year === selectedYear);
+      renderProjects(filteredProjects, projectsContainer, 'h2');
+    }
+  });
+});
