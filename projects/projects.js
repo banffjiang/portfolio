@@ -67,7 +67,7 @@ let svg = d3.select('svg');
 
 svg.selectAll('path').remove();
 
-arcData.forEach((arc, i) => {
+newArcData.forEach((arc, i) => {
   svg
     .append('path')
     .attr('d', arc)
