@@ -86,7 +86,7 @@ newArcData.forEach((arc, i) => {
       if (selectedIndex === -1) {
         renderProjects(projects, projectsContainer, 'h2');
       } else {
-        let selectedYear = data[selectedIndex].label; 
+        let selectedYear = newData[selectedIndex].label; 
         let filteredProjects = projects.filter(project => project.year === selectedYear);
         renderProjects(filteredProjects, projectsContainer, 'h2');
       }
