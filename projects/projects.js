@@ -47,41 +47,17 @@ function renderPieChart(projectsGiven) {
   newSvg.selectAll('path').remove();
   d3.select('.legend').selectAll('li').remove();
 
-  newArcData.forEach((d, idx) => {
-    newSvg.append('path')
-        .attr('d', newArcGenerator(d))
-        .attr('fill', colors(idx)); 
-  });
-
-  let legend = d3.select('.legend');
-  newData.forEach((d, idx) => {
-    legend.append('li')
-        .attr('style', `--color:${colors(idx)}`)
-        .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
-  });
-}
-
-let selectedIndex = -1;
-
-let svg = d3.select('svg'); 
-
-svg.selectAll('path').remove();
-
-arcs.forEach((arc, i) => {
-  svg
+  let slices = newSvg
+    .selectAll('path')
+    .data(newArcData)
+    .enter()
     .append('path')
-    .attr('d', arc)
-    .attr('fill', colors(i))
-    .on('click', () => {
-      selectedIndex = selectedIndex === i ? -1 : i; 
+    .attr('d', newArcGenerator)
+    .attr('fill', (_, i) => colors(i))
+    .on('click', (event, d) => {
+      selectedIndex = selectedIndex === newData.indexOf(d.data) ? -1 : newData.indexOf(d.data);
 
-      svg
-        .selectAll('path')
-        .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
-
-      legend
-        .selectAll('li')
-        .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+      slices.classed('selected', (_, idx) => idx === selectedIndex);
 
       if (selectedIndex === -1) {
         renderProjects(projects, projectsContainer, 'h2');
@@ -91,6 +67,81 @@ arcs.forEach((arc, i) => {
         renderProjects(filteredProjects, projectsContainer, 'h2');
       }
     });
-});
+
+  let legend = d3.select('.legend');
+  newData.forEach((d, idx) => {
+    legend.append('li')
+      .attr('style', `--color:${colors(idx)}`)
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+  });
+}
+
+// function renderPieChart(projectsGiven) {
+//   let newRolledData = d3.rollups(
+//     projectsGiven,
+//     (v) => v.length,
+//     (d) => d.year,
+//   );
+
+//   let newData = newRolledData.map(([year, count]) => {
+//     return { value: count, label: year };
+//   });
+
+//   let newSliceGenerator = d3.pie().value((d) => d.value);
+//   let newArcData = newSliceGenerator(newData);
+
+//   let newArcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+
+//   let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+//   let newSvg = d3.select('svg');
+//   newSvg.selectAll('path').remove();
+//   d3.select('.legend').selectAll('li').remove();
+
+//   newArcData.forEach((d, idx) => {
+//     newSvg.append('path')
+//         .attr('d', newArcGenerator(d))
+//         .attr('fill', colors(idx)); 
+//   });
+
+//   let legend = d3.select('.legend');
+//   newData.forEach((d, idx) => {
+//     legend.append('li')
+//         .attr('style', `--color:${colors(idx)}`)
+//         .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+//   });
+// }
+
+// let selectedIndex = -1;
+
+// let svg = d3.select('svg'); 
+
+// svg.selectAll('path').remove();
+
+// arcs.forEach((arc, i) => {
+//   svg
+//     .append('path')
+//     .attr('d', arc)
+//     .attr('fill', colors(i))
+//     .on('click', () => {
+//       selectedIndex = selectedIndex === i ? -1 : i; 
+
+//       svg
+//         .selectAll('path')
+//         .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+//       legend
+//         .selectAll('li')
+//         .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+//       if (selectedIndex === -1) {
+//         renderProjects(projects, projectsContainer, 'h2');
+//       } else {
+//         let selectedYear = newData[selectedIndex].label; 
+//         let filteredProjects = projects.filter(project => project.year === selectedYear);
+//         renderProjects(filteredProjects, projectsContainer, 'h2');
+//       }
+//     });
+// });
 
 
