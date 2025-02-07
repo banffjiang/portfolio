@@ -1,6 +1,98 @@
 import { fetchJSON, renderProjects } from "../global.js";
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
+// let query = '';
+// let searchInput = document.querySelector('.searchBar');
+// searchInput.addEventListener('input', (event) => {
+//     // update query value
+//     query = event.target.value;
+//     let filteredProjects = projects.filter((project) => {
+//         let values = Object.values(project).join('\n').toLowerCase();
+//         return values.includes(query.toLowerCase());
+//     });
+    
+//     renderProjects(filteredProjects, projectsContainer, 'h2');
+//     renderPieChart(filteredProjects); 
+// });
+
+// const projects = await fetchJSON('../lib/projects.json');
+// const projectsContainer = document.querySelector('.projects');
+// renderProjects(projects, projectsContainer, 'h2');
+// renderPieChart(projects); 
+// const projectsTitle = document.querySelector('.projects-title');
+
+// if (projectsTitle) {
+//   projectsTitle.textContent = `${projects.length} Projects`;
+// }
+
+// function renderPieChart(projectsGiven) {
+//   let newRolledData = d3.rollups(
+//     projectsGiven,
+//     (v) => v.length,
+//     (d) => d.year,
+//   );
+
+//   let newData = newRolledData.map(([year, count]) => {
+//     return { value: count, label: year };
+//   });
+
+//   let newSliceGenerator = d3.pie().value((d) => d.value);
+//   let newArcData = newSliceGenerator(newData);
+
+//   let newArcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+
+//   let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+//   let newSvg = d3.select('svg');
+//   newSvg.selectAll('path').remove();
+//   d3.select('.legend').selectAll('li').remove();
+
+//   newArcData.forEach((d, idx) => {
+//     newSvg.append('path')
+//       .attr('d', newArcGenerator(d))
+//       .attr('fill', colors(idx)); 
+//   });
+
+//   let legend = d3.select('.legend');
+//   newData.forEach((d, idx) => {
+//     legend.append('li')
+//       .attr('style', `--color:${colors(idx)}`)
+//       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+//   });
+
+//   let selectedIndex = -1;
+
+//   let svg = d3.select('svg'); 
+
+//   svg.selectAll('path').remove();
+
+//   newArcData.forEach((arc, i) => {
+//     svg
+//       .append('path')
+//       .attr('d', newArcGenerator(arc))
+//       .attr('fill', colors(i))
+//       .on('click', () => {
+//         selectedIndex = selectedIndex === i ? -1 : i; 
+
+//         svg
+//           .selectAll('path')
+//           .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+//         legend
+//           .selectAll('li')
+//           .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+//         if (selectedIndex === -1) {
+//           renderProjects(projects, projectsContainer, 'h2');
+//         } else {
+//           let selectedYear = newData[selectedIndex].label; 
+//           let filteredProjects = projects.filter(project => project.year === selectedYear);
+//           renderProjects(filteredProjects, projectsContainer, 'h2');
+//         }
+//       });
+//   });
+// }
+
 let query = '';
 let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('input', (event) => {
@@ -12,7 +104,7 @@ searchInput.addEventListener('input', (event) => {
     });
     
     renderProjects(filteredProjects, projectsContainer, 'h2');
-    renderPieChart(filteredProjects); 
+    renderPieChart(filteredProjects, selectedIndex);
 });
 
 const projects = await fetchJSON('../lib/projects.json');
@@ -25,7 +117,7 @@ if (projectsTitle) {
   projectsTitle.textContent = `${projects.length} Projects`;
 }
 
-function renderPieChart(projectsGiven) {
+function renderPieChart(projectsGiven, selectedIndex = -1) {
   let newRolledData = d3.rollups(
     projectsGiven,
     (v) => v.length,
@@ -60,8 +152,6 @@ function renderPieChart(projectsGiven) {
       .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
   });
 
-  let selectedIndex = -1;
-
   let svg = d3.select('svg'); 
 
   svg.selectAll('path').remove();
@@ -92,6 +182,5 @@ function renderPieChart(projectsGiven) {
       });
   });
 }
-
 
 
