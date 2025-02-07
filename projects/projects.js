@@ -23,6 +23,8 @@ if (projectsTitle) {
   projectsTitle.textContent = `${projects.length} Projects`;
 }
 
+
+
 let selectedIndex = -1;
 
 function renderPieChart(projectsGiven) {
