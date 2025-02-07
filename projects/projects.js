@@ -23,8 +23,6 @@ if (projectsTitle) {
   projectsTitle.textContent = `${projects.length} Projects`;
 }
 
-
-
 function renderPieChart(projectsGiven) {
   let newRolledData = d3.rollups(
     projectsGiven,
@@ -49,48 +47,118 @@ function renderPieChart(projectsGiven) {
 
   newArcData.forEach((d, idx) => {
     newSvg.append('path')
-        .attr('d', newArcGenerator(d))
-        .attr('fill', colors(idx)); 
+      .attr('d', newArcGenerator(d))
+      .attr('fill', colors(idx)); 
   });
 
   let legend = d3.select('.legend');
   newData.forEach((d, idx) => {
     legend.append('li')
-        .attr('style', `--color:${colors(idx)}`)
-        .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+      .attr('style', `--color:${colors(idx)}`)
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+  });
+
+  let selectedIndex = -1;
+
+  let svg = d3.select('svg'); 
+
+  svg.selectAll('path').remove();
+
+  newArcData.forEach((arc, i) => {
+    svg
+      .append('path')
+      .attr('d', newArcGenerator(arc))
+      .attr('fill', colors(i))
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i; 
+
+        svg
+          .selectAll('path')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+        legend
+          .selectAll('li')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+        if (selectedIndex === -1) {
+          renderProjects(projects, projectsContainer, 'h2');
+        } else {
+          let selectedYear = newData[selectedIndex].label; 
+          let filteredProjects = projects.filter(project => project.year === selectedYear);
+          renderProjects(filteredProjects, projectsContainer, 'h2');
+        }
+      });
   });
 }
 
-let selectedIndex = -1;
 
-let svg = d3.select('svg'); 
 
-svg.selectAll('path').remove();
+// function renderPieChart(projectsGiven) {
+//   let newRolledData = d3.rollups(
+//     projectsGiven,
+//     (v) => v.length,
+//     (d) => d.year,
+//   );
 
-arcs.forEach((arc, i) => {
-  svg
-    .append('path')
-    .attr('d', arc)
-    .attr('fill', colors(i))
-    .on('click', () => {
-      selectedIndex = selectedIndex === i ? -1 : i; 
+//   let newData = newRolledData.map(([year, count]) => {
+//     return { value: count, label: year };
+//   });
 
-      svg
-        .selectAll('path')
-        .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+//   let newSliceGenerator = d3.pie().value((d) => d.value);
+//   let newArcData = newSliceGenerator(newData);
 
-      legend
-        .selectAll('li')
-        .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+//   let newArcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-      if (selectedIndex === -1) {
-        renderProjects(projects, projectsContainer, 'h2');
-      } else {
-        let selectedYear = newData[selectedIndex].label; 
-        let filteredProjects = projects.filter(project => project.year === selectedYear);
-        renderProjects(filteredProjects, projectsContainer, 'h2');
-      }
-    });
-});
+//   let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+//   let newSvg = d3.select('svg');
+//   newSvg.selectAll('path').remove();
+//   d3.select('.legend').selectAll('li').remove();
+
+//   newArcData.forEach((d, idx) => {
+//     newSvg.append('path')
+//         .attr('d', newArcGenerator(d))
+//         .attr('fill', colors(idx)); 
+//   });
+
+//   let legend = d3.select('.legend');
+//   newData.forEach((d, idx) => {
+//     legend.append('li')
+//         .attr('style', `--color:${colors(idx)}`)
+//         .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+//   });
+// }
+
+// let selectedIndex = -1;
+
+// let svg = d3.select('svg'); 
+
+// svg.selectAll('path').remove();
+
+// arcs.forEach((arc, i) => {
+//   svg
+//     .append('path')
+//     .attr('d', arc)
+//     .attr('fill', colors(i))
+//     .on('click', () => {
+//       selectedIndex = selectedIndex === i ? -1 : i; 
+
+//       svg
+//         .selectAll('path')
+//         .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+//       legend
+//         .selectAll('li')
+//         .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+//       if (selectedIndex === -1) {
+//         renderProjects(projects, projectsContainer, 'h2');
+//       } else {
+//         let selectedYear = newData[selectedIndex].label; 
+//         let filteredProjects = projects.filter(project => project.year === selectedYear);
+//         renderProjects(filteredProjects, projectsContainer, 'h2');
+//       }
+//     });
+// });
 
 
