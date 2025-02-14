@@ -3,7 +3,8 @@ let pages = [
     { url: '', title: 'Home' },
     { url: 'projects/index.html', title: 'Projects' },
     { url: 'contact/index.html', title: 'Contact' },
-    { url: 'cv/index.html', title: 'CV' },
+    { url: 'cv/index.html', title: 'Resume' },
+    { url: 'meta/', title: 'Meta' },
     { url: 'https://github.com/banffjiang', title: 'GitHub' }
 ];
 
