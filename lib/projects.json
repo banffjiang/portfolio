@@ -3,7 +3,7 @@
         "title": "TaskPro",
         "year": "2022",
         "image": "/portfolio/images/task.jpeg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem repellendus ratione suscipit nihil debitis, vitae nostrum in blanditiis perspiciatis. Perferendis, dolores non enim maiores ipsum reiciendis quos debitis exercitationem?"
+        "description": "Task Manager deployed through C++, Github, CMake"
     },
     {
         "title": "Stock Market Model",
@@ -28,7 +28,8 @@
         "title": "Tour-de-Map",
         "year": "2025",
         "image": "/portfolio/images/tour.png",
-        "description": "This is an interactive map visualization of bike traffic in the Boston/Cambridge area throughout the day"
+        "description": "This is an interactive map visualization of bike traffic in the Boston/Cambridge area throughout the day",
+        "url": "https://banffjiang.github.io/Tour-de-Map/"
     },
     {
         "title": "DSC 106 Project 2",
