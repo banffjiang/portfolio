@@ -2,7 +2,7 @@
     {
         "title": "TaskPro",
         "year": "2022",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "/portfolio/images/task.jpeg",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat rem repellendus ratione suscipit nihil debitis, vitae nostrum in blanditiis perspiciatis. Perferendis, dolores non enim maiores ipsum reiciendis quos debitis exercitationem?"
     },
     {
@@ -20,14 +20,15 @@
     {
         "title": "Personal Website",
         "year": "2024",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Mollitia eos accusantium maiores reiciendis ad aspernatur voluptate dolore iure perspiciatis veritatis quia, pariatur unde vitae quae laudantium asperiores fuga? Asperiores sapiente possimus cum! Nobis eum quisquam natus inventore soluta?"
+        "image": "/portfolio/images/web.png",
+        "description": "Personal Portfolio",
+        "url": "https://banffjiang.github.io/website/"
     },
     {
-        "title": "DSC 106 Project 1",
+        "title": "Tour-de-Map",
         "year": "2025",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Perspiciatis rem optio, ea, reiciendis est corrupti pariatur qui dolorum accusantium animi commodi, recusandae consequuntur cumque vel ducimus iste? Ipsum ullam ea inventore consectetur enim! Ullam doloribus dignissimos vel dolore!"
+        "image": "/portfolio/images/tour.png",
+        "description": "This is an interactive map visualization of bike traffic in the Boston/Cambridge area throughout the day"
     },
     {
         "title": "DSC 106 Project 2",
